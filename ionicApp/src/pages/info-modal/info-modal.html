@@ -22,7 +22,6 @@
       <h2>{{ user.email }}</h2>
       <p>Joined : {{ user.created_at }}</p>
     </ion-item>
-  
     <ion-item>
       Firstname
       <ion-note item-end>
@@ -49,7 +48,7 @@
     </ion-item>
     <ion-item>
       <button ion-button block color="primary" (click)="showUpdatePage({userId:user.id})">Edit</button>
-      <button ion-button block color="danger" (click)="deleteUser()">Delete</button>
+      <button ion-button block color="danger" (click)="deleteConfirm()">Delete</button>
       <button ion-button block color="light" (click)="dismiss()">Cancel</button>
     </ion-item>
   </ion-list>

@@ -15,6 +15,12 @@ import { LoginPage } from '../login/login';
   ion-input:hover{
     border-bottom: 1px solid #35f3f0;
   }
+  .error_message{
+        color:#ff4046;
+    }
+    .error_imput{
+      border-bottom:1px solid #ff4046;
+    }
   `]
 })
 export class RegisterPage {
@@ -27,12 +33,39 @@ export class RegisterPage {
     password: '',
   };
   loading: any;
+  firstname_required = false;
+  lastname_required = false;
+  email_required = false;
+  password_required = false;
+  username_required = false;
+  required_found: boolean;
   constructor(public navCtrl: NavController, private menu: MenuController, 
     private toastCtrl: ToastController, public navParams: NavParams,
     private authProvider: AuthProvider, public loadingCtrl: LoadingController,) {
   }
 
   register() {
+    this.makeItFalse();
+    for (var key in this.user) {
+      var value = this.user[key];
+      if (value == '') {
+        switch (key) {
+          case 'firstname': this.firstname_required = true; this.required_found = true
+            break;
+          case 'lastname': this.lastname_required = true; this.required_found = true
+            break;
+          case 'username': this.username_required = true; this.required_found = true
+            break;
+          case 'email': this.email_required = true; this.required_found = true
+            break;
+          case 'password': this.password_required = true; this.required_found = true
+            break;
+          default:
+            break;
+        }
+      }
+    }
+    if (this.required_found) return false;
     this.showLoader();
     this.authProvider.register(this.user)
     .then((res) => {
@@ -40,7 +73,14 @@ export class RegisterPage {
       this.navCtrl.setRoot(LoginPage);
     }).catch((err) => { this.presentToast('Server Side Error, Try Again!') }); 
   }
-
+  makeItFalse() {
+    this.firstname_required = false;
+    this.lastname_required = false;
+    this.username_required = false;
+    this.email_required = false;
+    this.password_required = false;
+    this.required_found = false;
+  }
   showLoader() {
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...'

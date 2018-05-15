@@ -20,24 +20,24 @@
       <p>Joined : {{ user.created_at }}</p>
     </ion-item>
     <ion-item no-lines>
-      <ion-label [ngClass]="firsname_required ? 'error_message' : ''">Lastname</ion-label>
-      <ion-input type="text" placeholder="Firstname" [(ngModel)]="user.firstname" name="firstname" required></ion-input>
+      <ion-label [ngClass]="firsname_required ? 'error_message' : ''">Firstname</ion-label>
+      <ion-input type="text" placeholder="Firstname" [(ngModel)]="user.firstname" name="firstname" required [ngClass]="firsname_required ? 'error_imput' : ''"></ion-input>
     </ion-item>
     <ion-item no-lines>
       <ion-label [ngClass]="lastname_required ? 'error_message' : ''">Lastname</ion-label>
-      <ion-input type="text" placeholder="Lastname" [(ngModel)]="user.lastname" name="lastname" required></ion-input>
+      <ion-input type="text" placeholder="Lastname" [(ngModel)]="user.lastname" name="lastname" required [ngClass]="lastname_required ? 'error_imput' : ''"></ion-input>
     </ion-item>
     <ion-item no-lines>
       <ion-label [ngClass]="username_required ? 'error_message' : ''">Username</ion-label>
-      <ion-input type="text" placeholder="Username" [(ngModel)]="user.username" name="username" required></ion-input>
+      <ion-input type="text" placeholder="Username" [(ngModel)]="user.username" name="username" required [ngClass]="username_required ? 'error_imput' : ''"></ion-input>
     </ion-item>
     <ion-item no-lines>
       <ion-label [ngClass]="email_required ? 'error_message' : ''">Email</ion-label>
-      <ion-input type="text" placeholder="Email" [(ngModel)]="user.email" name="email" required></ion-input>
+      <ion-input type="text" placeholder="Email" [(ngModel)]="user.email" name="email" required [ngClass]="email_required ? 'error_imput' : ''"></ion-input>
     </ion-item>
     <ion-item no-lines>
       <ion-label [ngClass]="password_required ? 'error_message' : ''">Password</ion-label>
-      <ion-input type="password" placeholder="Password" [(ngModel)]="user.password" name="password" required></ion-input>
+      <ion-input type="password" placeholder="Password" [(ngModel)]="user.password" name="password" required [ngClass]="password_required ? 'error_imput' : ''"></ion-input>
     </ion-item>
     <ion-item no-lines>
       <button ion-button full (click)="onSubmit()" color="secondary">Update</button>

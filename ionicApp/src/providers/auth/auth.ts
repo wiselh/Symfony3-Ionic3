@@ -29,7 +29,6 @@ export class AuthProvider {
 
     let headers = new Headers();
     headers.append('content-type', 'application/x-www-form-urlencoded');
-    let options = new RequestOptions({ headers: headers });
     let body = new URLSearchParams();
     body.set('username', username);
     body.set('password', password);
@@ -38,12 +37,12 @@ export class AuthProvider {
       .subscribe(res => {
         resolve(res.json());
         const token = res.json() && res.json().token;
-        if (token) {
+        // if (token) {
           this.token = token;
           localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token }));
-        } else {
-          this.presentToast('Session has been Expired!');
-        }
+        // } else {
+        //   this.presentToast('Session has been Expired!');
+        // }
       }, (err) => {
         reject(err);
       });
@@ -83,10 +82,6 @@ export class AuthProvider {
     // });
   }
  
-  private handelError(error: Response) {
-    return Observable.throw(error.json() || 'server error');
-  }
-
   presentToast(message) {
     let toast = this.toastCtrl.create({
       message: message,

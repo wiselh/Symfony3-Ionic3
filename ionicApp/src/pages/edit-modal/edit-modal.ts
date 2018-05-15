@@ -3,14 +3,17 @@ import { NavController, NavParams, ViewController, LoadingController, ToastContr
 import { UsersProvider } from '../../providers/users/users';
 import { User } from '../../models/User';
 import { HomePage } from '../home/home';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'page-edit-modal',
   templateUrl: 'edit-modal.html',
   styles: [`
     .error_message{
-        font-size:11px;
         color:#ff4046;
+    }
+    .error_imput{
+      border-bottom:1px solid #ff4046;
     }
     `]
 })
@@ -26,31 +29,30 @@ export class EditModalPage {
     created_at:''
   };
   userId: string = this.navParams.get('userId');
-  firstname_required = true;
+  firstname_required = false;
   lastname_required = false;
   email_required = false;
-  password_required = true;
+  password_required = false;
   username_required = false;
   required_found: boolean;
   loading:any;
+
   constructor(public navCtrl: NavController,public navParams: NavParams,private usersProvider: UsersProvider, 
     public loadingCtrl: LoadingController, public viewCtrl: ViewController,
-    private toastCtrl: ToastController) {
+    private toastCtrl: ToastController, public datepipe: DatePipe) {
     this.usersProvider.getUsers().subscribe(users => {
       this.users = users;
       for (var key in this.users) {
         var user = this.users[key];
         if (user.id == this.userId) {
+          user.password='';
+          user.created_at = this.datepipe.transform(user.created_at, 'dd-MM-y');
           this.user = user;
         }
       }
-
     });
   }
-  ionViewDidLoad() {
-    this.user.password = '';
-  }
-  
+ 
   onSubmit() {
     this.makeItFalse();
     for (var key in this.user) {

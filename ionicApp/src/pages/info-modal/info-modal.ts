@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, ModalController, LoadingController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ModalController, LoadingController, ToastController, AlertController } from 'ionic-angular';
 import { User } from '../../models/User';
 import { UsersProvider } from '../../providers/users/users';
 import { EditModalPage } from '../edit-modal/edit-modal';
 import { HomePage } from '../home/home';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'page-info-modal',
@@ -26,12 +27,13 @@ export class InfoModalPage {
   constructor(public navCtrl: NavController,public navParams: NavParams,
     private userProvider: UsersProvider,public viewCtrl: ViewController,
     private modalCtrl: ModalController, private toastCtrl: ToastController,
-    public loadingCtrl: LoadingController,) {
+    public loadingCtrl: LoadingController, private alertCtrl: AlertController, public datepipe: DatePipe) {
     this.userProvider.getUsers().subscribe(users => {
       this.users = users;
       for (var key in this.users) {
         var user = this.users[key];
         if (user.id == this.userId) {
+          user.created_at = this.datepipe.transform(user.created_at, 'dd-MM-y');
           this.user = user;
         }
       }
@@ -73,5 +75,24 @@ export class InfoModalPage {
     });
     this.loading.present();
   }
-  
+  deleteConfirm() {
+    let confirm = this.alertCtrl.create({
+      title: 'Are you sure?',
+      message: 'Do you to detele this user?',
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.deleteUser();
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
 }

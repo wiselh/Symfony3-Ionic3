@@ -16,6 +16,11 @@ import { LoginPage } from '../login/login';
     background: #eee;
     cursor: pointer;
   }
+  .logout{
+    float:right;
+    margin-right:5px;
+    cursor:pointer;
+  }
   `]
 })
 export class HomePage {

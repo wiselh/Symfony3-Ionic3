@@ -16,7 +16,8 @@ import { UsersProvider } from '../providers/users/users';
 import { EditModalPage } from '../pages/edit-modal/edit-modal';
 import { AddModalPage } from '../pages/add-modal/add-modal';
 import { InfoModalPage } from '../pages/info-modal/info-modal';
- 
+import { DatePipe } from '@angular/common';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -47,7 +48,8 @@ import { InfoModalPage } from '../pages/info-modal/info-modal';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
-    UsersProvider
+    UsersProvider,
+    DatePipe
   ]
 })
 export class AppModule {}

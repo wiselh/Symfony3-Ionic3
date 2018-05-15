@@ -34,10 +34,15 @@ export class LoginPage {
   signIn() {
     if (this.user.email != "" || this.user.password != "" ) {
       this.showLoader();
-      this.authProvider.login(this.user.email,this.user.password).then((res)=>{
+      this.authProvider.login(this.user.email,this.user.password)
+      .then((res)=>{
         this.loading.dismiss();
-        this.navCtrl.setRoot(HomePage);
-      }).catch((err) => { this.loading.dismiss(); this.presentToast('Login or Password are Incorrect!')})
+        this.navCtrl.setRoot(HomePage);})
+      .catch((err) => { 
+        this.loading.dismiss(); 
+        console.log(err.json().message);
+        this.presentToast('Login or Password are Incorrect!')
+      });
     } else this.presentToast('Please enter your login Infos');
      
   }
@@ -64,4 +69,5 @@ export class LoginPage {
   ionViewWillLeave() {
     this.menu.swipeEnable(true);
   }
+  
 }
