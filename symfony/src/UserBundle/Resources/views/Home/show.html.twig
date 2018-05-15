@@ -1,0 +1,61 @@
+{% extends 'main.html.twig' %}
+{% block title %}Update{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('assets/css/lib/sweetalert/sweetalert.css') }}" rel="stylesheet">
+{% endblock %}
+{% block page_title %}Modifier l'utilisateur{% endblock %}
+{% block root %}
+    <li class="breadcrumb-item"><a href="{{ path('home') }}">Dashboard</a></li>
+    <li class="breadcrumb-item"> <a href="{{ path('home') }}">Utilisateur</a></li>
+    <li class="breadcrumb-item active">Modifier</li>
+{% endblock %}
+{% block body %}
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-content">
+                    <form class="form-edit" method="POST">
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <input type="text" class="form-control" id="firstname" name="firstname"
+                                       placeholder="Prenom.." value="{{ user.firstname }}">
+                            </div>
+                            <div class="form-group col-6">
+                                <input type="text" class="form-control" id="lastname" name="lastname"
+                                       placeholder="Nom.." value="{{ user.lastname }}">
+                            </div>
+                            <div class="form-group col-6">
+                                <input type="text" class="form-control" id="username" name="username"
+                                       placeholder="Nom d'utilisateur.." value="{{ user.username }}">
+                            </div>
+                            <div class="form-group col-6">
+                                <input type="text" class="form-control" id="email" name="email"
+                                       placeholder="votre adresse email.." value="{{ user.email }}">
+                            </div>
+                            <div class="form-group col-6">
+                                <input type="password" class="form-control" id="password" name="password"
+                                       placeholder="mot the pass.." value="">
+                            </div>
+                            <div class="form-group col-12">
+                                <div class="pull-right">
+                                    <button type="submit" data-id="{{ user.id }}" class="btn btn-success btn-sm btn-edit">Modifier</button>
+                                    <a  href="{{ path('users') }}" class="btn btn-info btn-sm">Anuller</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        var updateUserUrl = "{{ asset('update/') }}";
+    </script>
+    <script src="{{ asset('assets/js/lib/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/sweetalert/sweetalert.init.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/form-validation/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/form-validation/forms_validation.js') }}"></script>
+{% endblock %}

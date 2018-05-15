@@ -1,0 +1,47 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Edit User</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Back</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-list>
+    <ion-item no-lines>
+      <ion-avatar item-start>
+        <img src="assets/imgs/avatar.jpeg">
+      </ion-avatar>
+      <h2>{{ user.firstname }} {{ user.lastname}}</h2>
+      <p>Joined : {{ user.created_at }}</p>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-label [ngClass]="firsname_required ? 'error_message' : ''">Lastname</ion-label>
+      <ion-input type="text" placeholder="Firstname" [(ngModel)]="user.firstname" name="firstname" required></ion-input>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-label [ngClass]="lastname_required ? 'error_message' : ''">Lastname</ion-label>
+      <ion-input type="text" placeholder="Lastname" [(ngModel)]="user.lastname" name="lastname" required></ion-input>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-label [ngClass]="username_required ? 'error_message' : ''">Username</ion-label>
+      <ion-input type="text" placeholder="Username" [(ngModel)]="user.username" name="username" required></ion-input>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-label [ngClass]="email_required ? 'error_message' : ''">Email</ion-label>
+      <ion-input type="text" placeholder="Email" [(ngModel)]="user.email" name="email" required></ion-input>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-label [ngClass]="password_required ? 'error_message' : ''">Password</ion-label>
+      <ion-input type="password" placeholder="Password" [(ngModel)]="user.password" name="password" required></ion-input>
+    </ion-item>
+    <ion-item no-lines>
+      <button ion-button full (click)="onSubmit()" color="secondary">Update</button>
+      <button ion-button full (click)="dismiss()" color="light">Cancel</button>
+    </ion-item>
+  </ion-list>
+</ion-content>

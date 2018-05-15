@@ -1,0 +1,43 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Add User</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Back</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  
+</ion-header>
+
+<ion-content padding color="background" class="main-container">
+  <div class="form">
+    <ion-list class="input-list" no-lines>
+      <ion-item>
+        <ion-label floating>Firstname</ion-label>
+        <ion-input type="text" [(ngModel)]="user.firstname" name="firstname"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Lastname</ion-label>
+        <ion-input type="text" [(ngModel)]="user.lastname" name="lastname"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Username</ion-label>
+        <ion-input type="text" [(ngModel)]="user.username" name="username"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input type="email" [(ngModel)]="user.email" name="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input type="password" [(ngModel)]="user.password" name="password"></ion-input>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div padding>
+    <button ion-button class="btn-register" color="primary" full (click)="addUser()">Add</button>
+  </div>
+</ion-content>

@@ -1,0 +1,56 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Infos</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Back</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="assets/imgs/avatar.jpeg">
+      </ion-avatar>
+      <h2>{{ user.email }}</h2>
+      <p>Joined : {{ user.created_at }}</p>
+    </ion-item>
+  
+    <ion-item>
+      Firstname
+      <ion-note item-end>
+        {{ user.firstname }}
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      Lastname
+      <ion-note item-end>
+        {{ user.lastname }}
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      Username
+      <ion-note item-end>
+        {{ user.username }}
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      Email
+      <ion-note item-end>
+        {{ user.email }}
+      </ion-note>
+    </ion-item>
+    <ion-item>
+      <button ion-button block color="primary" (click)="showUpdatePage({userId:user.id})">Edit</button>
+      <button ion-button block color="danger" (click)="deleteUser()">Delete</button>
+      <button ion-button block color="light" (click)="dismiss()">Cancel</button>
+    </ion-item>
+  </ion-list>
+</ion-content>

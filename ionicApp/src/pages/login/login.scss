@@ -1,0 +1,25 @@
+page-login {
+    .main-container{
+        .form{
+            background: white;
+            border-radius: 8px;
+        }
+         .input-list ion-item{
+            background: transparent;
+            color: black;
+        }
+        .bg-image{
+            height: 100px;
+            width: 100%;
+            // background: url('/assets/imgs/marrakech.jpg') no-repeat ;
+            background-size:100%;
+        }
+        .btn-login{
+            border-radius: 8px;
+        }
+        .register-btn{
+            color:rgb(78, 138, 255);
+        }
+        
+    }
+}
